@@ -24,7 +24,7 @@ GUID = '33316de0-fd66-403b-ae96-11a211b082eb'
 Author = 'johnnyleuthard'
 
 # Company or vendor of this module
-CompanyName = 'Unknown'
+CompanyName = 'JohnnyLeuthard'
 
 # Copyright statement for this module
 Copyright = '(c) 2018 johnnyleuthard. All rights reserved.'
@@ -114,7 +114,7 @@ PrivateData = @{
 } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
-# HelpInfoURI = ''
+  HelpInfoURI     = 'https://github.com/JohnnyLeuthard/MyModules'
 
 # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
 # DefaultCommandPrefix = ''

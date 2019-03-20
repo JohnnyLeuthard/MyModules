@@ -52,7 +52,7 @@
 		Get uptime info on all servers listed in the file C:\temp\Serverlist.txt
 
    	.Link
-
+      https://github.com/JohnnyLeuthard/MyModules
    	.Notes
     	Author: Johnny Leuthard
 #>

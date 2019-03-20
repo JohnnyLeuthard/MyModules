@@ -2,7 +2,7 @@
 
 Function Get-WhosOn
 {
-   	<#
+  <#
    	.Synopsis
 		Get who is logged on a server
    	.Description
@@ -27,41 +27,42 @@ Function Get-WhosOn
 
 	.Notes
     		Author: Johnny Leuthard
-
+	.link
+			https://github.com/JohnnyLeuthard/MyModules
 	#>
 
   [cmdletbinding()]
-	Param
-   	(
-	  	[Parameter(ValueFromPipeline=$true,HelpMessage="The computer you want to run this against",Position=0,Mandatory=$false)]
-				$ComputerName=$env:COMPUTERNAME,
-			[switch]$LogOff #not in use yet will be used to log off all active sessions
-	)
+  Param
+  (
+	  	[Parameter(ValueFromPipeline = $true, HelpMessage = "The computer you want to run this against", Position = 0, Mandatory = $false)]
+				$ComputerName = $env:COMPUTERNAME,
+    [switch]$LogOff #not in use yet will be used to log off all active sessions
+  )
 
-   	Begin
-   	{
+  Begin
+  {
 
-	}
-	Process
-   	{
-		#$psCmdlet.WriteVerbose("Verbose Mode") #displays when the -verbose switch is used
-		$users = Get-WMIObject Win32_Process -filter 'name="explorer.exe"' -computername $ComputerName #| ForEach-Object { $owner = $_.GetOwner(); '{0}\{1}' -f $owner.Domain, $owner.User } | Sort-Object #| Get-Unique
+  }
+  Process
+  {
+    #$psCmdlet.WriteVerbose("Verbose Mode") #displays when the -verbose switch is used
+    $users = Get-WMIObject Win32_Process -filter 'name="explorer.exe"' -computername $ComputerName #| ForEach-Object { $owner = $_.GetOwner(); '{0}\{1}' -f $owner.Domain, $owner.User } | Sort-Object #| Get-Unique
 
-		Foreach ($user in $users)
-		{
-			If($user -ne $null)
-			{
-				$MyCustomObject = New-Object System.Object
-				$MyCustomObject | Add-Member -type NoteProperty -name ComputerName -value $ComputerName.ToUpper().split(".")[0]
-				$MyCustomObject | Add-Member -type NoteProperty -name Username -value $User.GetOwner().User
-				$MyCustomObject | Add-Member -type NoteProperty -name Domain -value $User.GetOwner().Domain
+    Foreach ($user in $users)
+    {
+      If ($user -ne $null)
+      {
+        $MyCustomObject = New-Object System.Object
+        $MyCustomObject | Add-Member -type NoteProperty -name ComputerName -value $ComputerName.ToUpper().split(".")[0]
+        $MyCustomObject | Add-Member -type NoteProperty -name Username -value $User.GetOwner().User
+        $MyCustomObject | Add-Member -type NoteProperty -name Domain -value $User.GetOwner().Domain
 
-				$MyCustomObject
-			}
-		}
-	}
-	End
-   	{
+        $MyCustomObject
+      }
+    }
+  }
+  End
+  {
 
  	}
 }#End Function
