@@ -1,0 +1,3 @@
+ServerName,Domain,ServerFQDN,DomainNetBios,IP,DataCenter,Environment,Type,Role,RunningOn,Notes,ComponentUserID,Active,PSSession
+Server1,MyDomain.com,Server1.MyDomain.com,ENT-MyDomain,10.10.0.10,MyDataCebter,Prod,VM,CPM,,No Notes,CPM_ServerName,True,True
+Server2,MyDomain.com,Server2.MyDomain.com,QA-MyDomain,10.10.0.11,MyDataCebter,Prod,VM,PSM,EVD,No Notes,PSM_ServerName,True,True
