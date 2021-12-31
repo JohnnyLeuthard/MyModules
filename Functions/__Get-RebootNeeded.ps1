@@ -23,7 +23,7 @@
 Function Get-RebootNeeded
 {
 
-  [cmdletbinding(DefaultParameterSetName = 'None')]
+  [cmdletbinding(SupportsShouldProcess,DefaultParameterSetName = 'None')]
   Param
   (
     [Parameter(Mandatory,Position = 0, ValuefromPipeline)]

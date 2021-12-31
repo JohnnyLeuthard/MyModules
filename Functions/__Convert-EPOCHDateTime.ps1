@@ -1,3 +1,6 @@
+
+Function Convert-EPOCHDateTime
+{
 <#
   .Synopsis
 
@@ -9,12 +12,11 @@
   .Example
     Convert-EPOCHDateTime -InputTime -9147600
 
-    Description
-    ---------------
     Converts Unix EPOCH time -9147600 to a human readable date
 
   .Example
     -9147600,1539613448,1529604105 | Convert-EPOCHDateTime
+
 
   .Link
 
@@ -22,9 +24,7 @@
     Author: Johnny Leuthard
 
 #>
-Function Convert-EPOCHDateTime
-{
-  [CmdletBinding(DefaultParameterSetName = 'None')]
+  [CmdletBinding(SupportsShouldProcess,DefaultParameterSetName = 'None')]
   Param
   (
     [Parameter(Position = 0, ValueFromPipeline = $true, Mandatory)]
@@ -60,7 +60,8 @@ Function Convert-EPOCHDateTime
 ##################
 <#
 
-
-1636112341
+Convert-EPOCHDateTime -InputTime '1636112341'
 
 #>
+
+

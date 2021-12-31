@@ -58,7 +58,7 @@
 #>
 Function Get-Uptime
 {
-  [CmdletBinding(DefaultParameterSetName = 'None')]
+  [CmdletBinding(SupportsShouldProcess,DefaultParameterSetName = 'None')]
   Param
   (
     [Parameter(ValueFromPipeline)]

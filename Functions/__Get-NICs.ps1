@@ -53,7 +53,7 @@ Function Get-NICS
 {
 
 
-  [CmdletBinding(DefaultParameterSetName = 'None')]
+  [CmdletBinding(SupportsShouldProcess,DefaultParameterSetName = 'None')]
   Param
   (
     [Parameter(Mandatory = $false, Position = 0, ValuefromPipeline = $true)]
@@ -96,7 +96,6 @@ Function Get-NICS
 #TODO
 -------
 - IPAddresss, MACAddresses, Gateway, etc... (loop through each and have a different entry for each IP if there are multiple per NIC)
-
 
 #>
 

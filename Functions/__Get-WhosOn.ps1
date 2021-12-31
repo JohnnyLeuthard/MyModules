@@ -31,7 +31,7 @@ Function Get-WhosOn
 			https://github.com/JohnnyLeuthard/MyModules
 	#>
 
-  [CmdletBinding(DefaultParameterSetName = 'None')]
+  [CmdletBinding(SupportsShouldProcess,DefaultParameterSetName = 'None')]
 
     Param
     (

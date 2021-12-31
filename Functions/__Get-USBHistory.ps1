@@ -55,7 +55,7 @@ Function Get-USBHistory
 {
 
 
-  [CmdletBinding(DefaultParameterSetName = 'None')]
+  [CmdletBinding(SupportsShouldProcess,DefaultParameterSetName = 'None')]
   Param
   (
     [parameter(ValueFromPipeline = $True, ValueFromPipelinebyPropertyName = $True)]

@@ -61,7 +61,7 @@
 Function Get-MD5
 {
 
-  [cmdletbinding(DefaultParameterSetName = 'None')]
+  [cmdletbinding(SupportsShouldProcess,DefaultParameterSetName = 'None')]
   Param
   (
     [Parameter(Mandatory, Position = 0, ValuefromPipeline)]
