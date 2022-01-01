@@ -56,7 +56,7 @@ Function Get-NICS
   [CmdletBinding(SupportsShouldProcess,DefaultParameterSetName = 'None')]
   Param
   (
-    [Parameter(Mandatory = $false, Position = 0, ValuefromPipeline = $true)]
+    [Parameter(ValueFromPipelineByPropertyName,Mandatory)]
     $ComputerName = $env:COMPUTERNAME
   )
   Begin

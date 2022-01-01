@@ -16,16 +16,12 @@ Function Get-Uptime
    	.Example
 		Get-Uptime
 		Gets uptime on current server
-
 	.Example
 		Get-Uptime -ComputerName Server1
 		Gets the uptime on a single server named Server1
-
 	.Example
 		Get-Uptime Server1
 		Gets the uptime on a single server named Server1
-
-
 	.Example
 		$Servers | Get-Uptime
 		Gets the uptime of a list of servers contained in a object variable called $Servers. As long as the servers variable has a property named "ComputerName"
