@@ -1,115 +1,93 @@
-#REQUIRES -Version 2.0
+#REQUIRES -Version 5.1
+
+Function Get-Uptime
+{
 <#
    	.Synopsis
 		Gets uptimes on server(s)
-
 	.Description
 		Gets uptime on a single server or a list of servers.
 
 	.Parameter ComputerName
 		The name of the computers(s) to check uptime status of.
+        If one is not provided it used the local computername
+
 
    	.Example
 		Get-Uptime
-
-		Description
-		---------------------
 		Gets uptime on current server
 
 	.Example
 		Get-Uptime -ComputerName Server1
-
-		Description
-		---------------------
 		Gets the uptime on a single server named Server1
 
 	.Example
 		Get-Uptime Server1
-
-		Description
-		---------------------
 		Gets the uptime on a single server named Server1
 
-	.Example
-		"Server1","Server2" | Get-Uptime
-
-		Description
-		---------------------
-		Gets the uptime on the servers named Server1 and Server2
 
 	.Example
 		$Servers | Get-Uptime
-
-		Description
-		---------------------
-		Gets the uptime of a list of servers contained in a variable called $Servers
-
+		Gets the uptime of a list of servers contained in a object variable called $Servers. As long as the servers variable has a property named "ComputerName"
 	.Example
-		Get-Content C:\temp\Serverlist.txt | Get-Uptime
+		Import-Csv "C:\Temp\Serverlist.csv" | Get-Uptime 
+		Get uptime info on all servers listed in the file C:\temp\Serverlist.csv. The CSV must have a header named "ComputerName"
 
-		Description
-		---------------------
-		Get uptime info on all servers listed in the file C:\temp\Serverlist.txt
+
+    .INPUTS
+
+    .OUTPUTS
+
 
    	.Link
       https://github.com/JohnnyLeuthard/MyModules
+
    	.Notes
     	Author: Johnny Leuthard
+
+
 #>
-Function Get-Uptime
-{
-  [CmdletBinding(SupportsShouldProcess,DefaultParameterSetName = 'None')]
-  Param
-  (
-    [Parameter(ValueFromPipeline)]
-    $ComputerName = ($Env:COMPUTERNAME)
-  )
-  Begin
-  {
-  }
-  Process
-  {
-    $MyCustomObject = New-Object System.Object
-    #$MyCustomObject | Add-Member -type NoteProperty -name ComputerName -Value $ComputerName.ToUpper
-    $MyCustomObject | Add-Member -type NoteProperty -name ComputerName -Value $ComputerName.ToUpper().split(".")[0]
+      [CmdletBinding(SupportsShouldProcess,DefaultParameterSetName='pelineByPropertyName')]
+      Param
+      (
+            [Parameter(ValueFromPipelineByPropertyName,ParameterSetName='pelineByPropertyName')]
+            #[Parameter(ValueFromPipeline,ParameterSetName='Pipeline')]
+            [ValidateScript({if (-not (Test-Connection -Count 1 -Quiet -ComputerName $_)){throw "Computer [$_] not responding. pleae try another."}else{$true}})]
+            $ComputerName = $Env:COMPUTERNAME
 
-    #Ping server to verify it is up
-    If ($server -ne "")
-    {
-
-      #Test to make sure the server is up.
-      $PingTest = Test-Connection -ComputerName $ComputerName -Count 1 -ea 0
-      If ($PingTest -eq $Null) #Ping failed
+      )
+      Begin
       {
-        $MyCustomObject | Add-Member -type NoteProperty -name Days -Value "No Ping"
-        $MyCustomObject | Add-Member -type NoteProperty -name Hours -Value "No Ping"
-        $MyCustomObject | Add-Member -type NoteProperty -name Minutes -Value "No Ping"
-        $MyCustomObject | Add-Member -type NoteProperty -name Seconds -Value "No Ping"
+            Write-Verbose "----> Getting uptime on servers..."
       }
-      Else
+      Process
       {
-        #Get the last boot time of the current server
-        $LastBoot = Get-WmiObject -class Win32_OperatingSystem -computer $ComputerName
+#    
+            Write-Debug "Process section reached"
+            Write-Verbose "------> Query host [$COMPUTERNAME]"
+            #Get the last boot time of the current server
+            $LastBoot = Get-WmiObject -class Win32_OperatingSystem -computer $COMPUTERNAME
+         
+            #Convert the last boot time to a readable format
+            $LBTime = $LastBoot.ConvertToDateTime($LastBoot.Lastbootuptime)
+            #get the difference between now and the last boot time
+            [TimeSpan]$UPTime = New-TimeSpan $LBTime $(get-date)
+        
+            $Hash =[ordered]@{
+                ComputerName = $COMPUTERNAME
+                days         = $UPTime.days
+                Hours        = $UPTime.Hours
+                Minutes      = $UPTime.Minutes
+                Seconds      = $UPTime.Seconds
+            }
+            write-debug "About to create object"
+            Write-Verbose "------> Uptime results for host [$Computername]"
+            New-Object -TypeName psobject -Property $hash
+        }
+        End
+        {
 
-        #Convert the last boot time to a readable format
-        $LBTime = $LastBoot.ConvertToDateTime($LastBoot.Lastbootuptime)
-        #get the difference between now and the last boot time
-        [TimeSpan]$UPTime = New-TimeSpan $LBTime $(get-date)
-
-        #Save data into a custom object
-        $MyCustomObject | Add-Member -type NoteProperty -name Days -Value $UPTime.days
-        $MyCustomObject | Add-Member -type NoteProperty -name Hours -Value $UPTime.hours
-        $MyCustomObject | Add-Member -type NoteProperty -name Minutes -Value $UPTime.minutes
-        $MyCustomObject | Add-Member -type NoteProperty -name Seconds -Value $UPTime.seconds
-      }
-
-      $MyCustomObject
-    }
-  }
-  End
-  {
-
- 	}
+        }
 
 }#(function Get-Uptime)
 ###################
