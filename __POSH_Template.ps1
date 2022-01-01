@@ -27,7 +27,7 @@ Function POSH_Template
 
 	
 #>
-	[CmdletBinding(SupportShouldProcess,DefaultParameterSetName = 'None',ConfirmImpact = 'High')]
+	[CmdletBinding(SupportShouldProcess,DefaultParameterSetName='None',ConfirmImpact = 'High')]
 	param 
 	(
 		[Parameter(Mandatory,ParameterSetName = 'ByName',HelpMessage = "Enter the Name you want to use")]
@@ -114,7 +114,7 @@ Function POSH_Template
 #####################################
 <#
 
-
+POSH_Template -debug
 
 
 #>
