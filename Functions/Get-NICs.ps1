@@ -1,5 +1,8 @@
-#REQUIRES -Version 2.0
+#REQUIRES -Version 5.1
 
+
+Function Get-NICS
+{
 <#
    	.Synopsis
 		Get NIC info from a computer
@@ -12,83 +15,74 @@
 
    	.Example
 	    Get-NICS
-
 		Get the NIC info from the local computer
     .Example
 		Get-NICS servername
-
-		Description
-		----------------
 		Get NIC info from renmote computer
-
 	.Example
 		Get-NICS "servername","servername"
-
-		Description
-		----------------
 		Get NIC info on multiple computers
-
 	.Example
 		$ServerList | Get-NICS
-
-		Description
-		----------------
 		Get NIC info on multiple computers listed in the array named $ServerList
-
 	.Example
-
-		Get-Nics | Where {$_.Enabled -eq $true}
-
-		Description
-		----------------
+        Get-Nics | Where {$_.Enabled -eq $true}
 		Get NIC's that are enabled
 
+
+    .INPUTS
+    .OUTPUTS
    	.Link
+      https://github.com/JohnnyLeuthard/MyModules
 
    	.Notes
     	Author: Johnny Leuthard
 
 #>
-Function Get-NICS
-{
 
+        [CmdletBinding(SupportsShouldProcess,DefaultParameterSetName='PipelineeByPropertyName')]
+        Param
+        (
+            [Parameter(ValueFromPipelineByPropertyName,ParameterSetName='PipelineeByPropertyName')]
+            #[Parameter(ValueFromPipeline,ParameterSetName='Pipeline')]
+            [ValidateScript({if (-not (Test-Connection -Count 1 -Quiet -ComputerName $_)){throw "Computer [$_] not responding. pleae try another."}else{$true}})]
+            [Alias("Name","Host")]
+            $ComputerName = $env:COMPUTERNAME
+        )
+        Begin
+        {
+            Write-Verbose "----> Getting NIC Adapter ino on servers..."
+        }#(begin)
+        Process
+        {
 
-  [CmdletBinding(SupportsShouldProcess,DefaultParameterSetName = 'None')]
-  Param
-  (
-    [Parameter(ValueFromPipelineByPropertyName,Mandatory)]
-    $ComputerName = $env:COMPUTERNAME
-  )
-  Begin
-  {
-  }
-  Process
-  {
+            Write-Debug "Process section reached"
+            Write-Verbose "------> Query host [$COMPUTERNAME]"
+            $NICList = (Get-WmiObject -class "Win32_NetworkAdapterConfiguration" -computername $ComputerName)
+            Write-Debug 'NIC Info checkpoint - info stored on variable [$NICList]'
+            Foreach ($NIC in $NICList  )
+            {
+                $Hash =[ordered]@{
+                    ComputerName  =  $ComputerName
+                    NICName  =  ($NIC.Caption.split("]")[1] )
+                    IPAddress  =  $NIC.IPAddress
+                    #IPAddress  =  ((NIC)[8]).IPAddress | %{$_}
+                    MACAddress  =  $NIC.MACAddress
+                    Gateway  =  $NIC.DefaultIPGateway
+                    Domain  =  $NIC.DNSDomain
+                    ServiceName  =  $NIC.ServiceName
+                    Enabled  =  $NIC.IPEnabled
+                }
+                write-debug "About to create object"
+                Write-Verbose "------> NIC results for host [$Computername]"
+                New-Object -TypeName psobject -Property $hash
+            }
 
-    ##Collest NIC's from server and loopp through ading info to a custom object for output
-    $NICList = (Get-WmiObject -class "Win32_NetworkAdapterConfiguration" -computername $ComputerName)
-    Foreach ($NIC in $NICList  )
-    {
+        }#(Process)
+        End
+        {
 
-      $objNICS = New-Object System.Object
-      $objNICS | Add-Member -Type NoteProperty -Name ComputerName -Value $ComputerName.split(".")[0]
-      $objNICS | Add-Member -Type NoteProperty -Name NICName -Value ($NIC.Caption.split("]")[1] )
-      $objNICS | Add-Member -TYPE NoteProperty -Name IPAddress -Value $NIC.IPAddress
-      #NICS | Add-Member -TYPE NoteProperty -Name IPAddress -Value ((NIC)[8]).IPAddress | %{$_}
-      $objNICS | Add-Member -Type NoteProperty -Name MACAddress -Value $NIC.MACAddress
-      $objNICS | Add-Member -Type NoteProperty -Name Gateway -Value $NIC.DefaultIPGateway
-      $objNICS | Add-Member -Type NoteProperty -Name Domain -Value $NIC.DNSDomain
-      $objNICS | Add-Member -Type NoteProperty -Name ServiceName -Value $NIC.ServiceName
-      $objNICS | Add-Member -Type NoteProperty -Name Enabled -Value $NIC.IPEnabled
-
-      $objNICS
-    }
-
-  }
-  End
-  {
-
- 	}
+        }#(end)
 }#End Function
 #Notes
 <#
