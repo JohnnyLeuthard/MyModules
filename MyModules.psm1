@@ -13,8 +13,8 @@ $global:temp2 = $PSScriptRoot
 # This improves performance of command discovery in PowerShell.
 ##Export-ModuleMember -Function *-*
 
-Get-Childitem $PSScriptRoot\Functions -Recurse -Filter "*.ps1" -Exclude "_*.ps1xml", "*.old", "__*.ps1" |
-#Get-Childitem $PSScriptRoot -Recurse -Filter "*.ps1" -Exclude "_*.ps1xml", "*.old", "__*.ps1" |
+#Get-Childitem $PSScriptRoot\Functions -Recurse -Filter "*.ps1" -Exclude "_*.ps1xml", "*.old", "__*.ps1" |
+Get-Childitem $PSScriptRoot -Recurse -Filter "*.ps1" -Exclude "_*.ps1xml", "*.old", "__*.ps1" |
   ForEach-Object {
       Try{
         . $_.FullName
@@ -24,5 +24,5 @@ Get-Childitem $PSScriptRoot\Functions -Recurse -Filter "*.ps1" -Exclude "_*.ps1x
   }
 
 
-Export-ModuleMember -Function 'Get-*', 'New-*'
+#Export-ModuleMember -Function 'Get-*', 'New-*'
 

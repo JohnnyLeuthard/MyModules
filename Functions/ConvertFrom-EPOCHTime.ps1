@@ -2,20 +2,19 @@
 Function ConvertFrom-EPOCHTime
 {
 <#
-    .Synopsis
+    .SYNOPSIS
 
-    .description
+    .DESCRIPTION
 
-    .Parameter InputTime
+    .PARAMETER InputTime
     The EPOCH time to converte
 
-    .Example
-    Convert-EPOCHDateTime -InputTime -9147600
-    Converts Unix EPOCH time -9147600 to a human readable date
-
-    .Example
+    .EXAMPLE
+    ConvertFrom-EPOCHTime -EPOCHTime 9147600
+    Converts Unix EPOCH time 9147600 to a human readable date
+    .EXAMPLE
     -9147600,1539613448,1529604105 | ConvertFrom-EPOCHTime
-    .Example
+    .EXAMPLE
     ConvertFrom-EPOCHTime -EPOCHTime 1529604105
 
     .INPUTS
@@ -23,7 +22,7 @@ Function ConvertFrom-EPOCHTime
     .OUTPUTS
 
     .Link
-        https://github.com/JohnnyLeuthard/MyModules
+    https://github.com/JohnnyLeuthard/MyModules/ModHels
 
 .Notes
     Author: Johnny Leuthard

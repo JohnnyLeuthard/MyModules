@@ -62,12 +62,13 @@ Function Install-IISServer
         # Web Server features
         $IISFeatireList = 'Web-Server','Web-ASP','Web-ASP-Net45'
         # Additional features either required by policy or for enhanced security controls 
-        $AdditionalFeaturesList = 'WAS'   
+        $AdditionalFeaturesList = 'WAS','WAS-Config-APIs','WEB-WebServer','Web-Common-Http','Web-Static-Content','Web-Default-Doc','Web-Dir-Browsing','Web-Http-Errors',
+            'Web-Http-Redirect','Web-App-Dev'   
         #-- Load features to install in a master variable
         $AllFeaturesToInstall = @()
         $AllFeaturesToInstall += $IISFeatireList
         $AllFeaturesToInstall += $AdditionalFeaturesList
-        #$AllFeaturesToInstall += 'Forces-Fail' # Uncomment this to force a failure doe testing/debug
+        #$AllFeaturesToInstall += 'Forced-Fail' # Uncomment this to force a failure doe testing/debug
 
 
         # loop throgh the Windows Feature list and install eachs
@@ -79,7 +80,7 @@ Function Install-IISServer
             $FeatureInstallResults = @() # Initalize results variable to aboid any possible bleadover
             
             Try {             
-                $Global:FeatureInstallResults += Install-WindowsFeature -Name $_  
+                $Global:FeatureInstallResults += Install-WindowsFeature -Name $_  -ErrorAction stop
             } 
             Catch {       
                 Write-Error "Error Installing feature [$_]"

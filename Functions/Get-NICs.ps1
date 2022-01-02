@@ -2,28 +2,28 @@
 Function Get-NICS
 {
 <#
-   	.Synopsis
+   	.SYNOPSIS
 		Get NIC info from a computer
 
-	.Description
+	.DESCRIPTION
     	Get's NIC info from local or remote computer
 
-	.Parameter ComputerName
+	.PARAMETER ComputerName
 		The name of the computer to get NIC info from
 
-   	.Example
+   	.EXAMPLE
 	    Get-NICS
 		Get the NIC info from the local computer
-    .Example
+    .EXAMPLE
 		Get-NICS servername
 		Get NIC info from renmote computer
-	.Example
+	.EXAMPLE
 		Get-NICS "servername","servername"
 		Get NIC info on multiple computers
-	.Example
+	.EXAMPLE
 		$ServerList | Get-NICS
 		Get NIC info on multiple computers listed in the array named $ServerList
-	.Example
+	.EXAMPLE
         Get-Nics | Where {$_.Enabled -eq $true}
 		Get NIC's that are enabled
 
