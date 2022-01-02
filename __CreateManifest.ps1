@@ -7,7 +7,7 @@ $ModPath = "C:\GIT\$ModuleName\$ModuleName.psd1"
 $Hash = @{
 
     'Path'                      = $ModPath
-    #'RootModule'                = 'MyModules.psm1'   # Use this if using nested modules
+    'RootModule'                = 'MyModules.psm1'   # Use this if using nested modules
     'ModuleVersion'             = '1.0'
     'Guid'                      = '33316de0-fd66-403b-ae96-11a211b082eb' 
     #'Guid'                      = (New-Guid).Guid
@@ -26,8 +26,9 @@ $Hash = @{
     'CmdletsToExport'           = '*'
     'VariablesToExport'         = '*'
     'AliasesToExport'           = '*'
-    'FileList'                  = ('RequiredFile1.txt','RequiredFile2.txt')
-    'HelpInfoURI'               = 'https://github.com/JohnnyLeuthard/MyModules/ModHelp'
+    #'FileList'                  = ('RequiredFile1.txt','RequiredFile2.txt')
+    'FileList'                  = ('RequiredFile1.txt')
+    #'HelpInfoURI'               = 'https://github.com/JohnnyLeuthard/MyModules/ModHelp'
     #'DefaultCommandPrefix'      = 'JEL'
 }
     
