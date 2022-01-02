@@ -3,33 +3,34 @@
 Function POSH_Template
 {
 <#
-.SYNOPSIS
-	Short description
-.DESCRIPTION
-	Long description
+   	.SYNOPSIS
 
-.PARAMETER Name
-.PARAMETER ID
+	.DESCRIPTION
 
-	
-.EXAMPLE
-	PS C:\> <example usage>
-	Explanation of what the example does
-.INPUTS
-	Inputs (if any)
-.OUTPUTS
-	Output (if any)
-.LINK
-.FUNCTIONALITY
 
-.NOTES
-	Author: Johnny Leuthard
+	.PARAMETER InstallPath
+	.PARAMETER NewLocation
+	.PARAMETER move
 
-	
+   	.EXAMPLE
+	    Install-IISServer
+		Install IIS on the local computer
+
+
+    .INPUTS
+    .OUTPUTS
+
+   	.LINK
+    https://github.com/JohnnyLeuthard/MyModules/ModHelp
+
+   	.NOTES
+    	Author: Johnny Leuthard
+
 #>
-	[CmdletBinding(SupportShouldProcess,DefaultParameterSetName='None',ConfirmImpact = 'High')]
-	param 
-	(
+
+    [CmdletBinding(SupportsShouldProcess,DefaultParameterSetName='PipelineeByPropertyName')]
+    param 
+    (
 		[Parameter(Mandatory,ParameterSetName = 'ByName',HelpMessage = "Enter the Name you want to use")]
 		[Parameter(Mandatory,ParameterSetName = 'None')]
 		[ValidateCount(1, 5)]
@@ -76,7 +77,7 @@ Function POSH_Template
 		[Parameter()]
 		[AllowNull()]
 		[string]$AllowNullParam
-	)
+    )
 	Begin {
 
 		# Create a file?

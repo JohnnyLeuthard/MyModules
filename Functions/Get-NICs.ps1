@@ -1,5 +1,3 @@
-#REQUIRES -Version 5.1
-
 
 Function Get-NICS
 {
@@ -33,7 +31,7 @@ Function Get-NICS
     .INPUTS
     .OUTPUTS
    	.Link
-      https://github.com/JohnnyLeuthard/MyModules
+      https://github.com/JohnnyLeuthard/MyModules/ModHelp
 
    	.Notes
     	Author: Johnny Leuthard
@@ -47,7 +45,7 @@ Function Get-NICS
             #[Parameter(ValueFromPipeline,ParameterSetName='Pipeline')]
             [ValidateScript({if (-not (Test-Connection -Count 1 -Quiet -ComputerName $_)){throw "Computer [$_] not responding. pleae try another."}else{$true}})]
             [Alias("Name","Host")]
-            $ComputerName = $env:COMPUTERNAME
+            $ComputerName = $Env:COMPUTERNAME
         )
         Begin
         {
@@ -73,7 +71,7 @@ Function Get-NICS
                     ServiceName  =  $NIC.ServiceName
                     Enabled  =  $NIC.IPEnabled
                 }
-                write-debug "About to create object"
+                Write-Debug "About to create object"
                 Write-Verbose "------> NIC results for host [$Computername]"
                 New-Object -TypeName psobject -Property $hash
             }
