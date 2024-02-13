@@ -1,7 +1,8 @@
 Playing round with a module set, VSCode and GitHub!!
 
 bla bla bla 1 2 3
-
+Functions with a name that begivs with"__" will not be loaded wheh loading the module. They are in progress, or hacve some other issue. 
+Just playing around creating a basic structure where new functions can just be added to the functions folder (or sub folders) and they become a part of the module set.
 
 
 
