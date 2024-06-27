@@ -27,7 +27,7 @@ Convert-EPOCHDateTime -InputTime -9147600
 ```
 Converts Unix EPOCH date -9147600 to a human readable date
     
-```powershell
+```text
 InputTime LocalTimezone         LocalTime           UTCTime
 --------- -------------         ---------           -------
 999999094 Eastern Standard Time 9/8/2001 9:31:34 PM 9/9/2001 1:31:34 AM
@@ -43,7 +43,7 @@ InputTime LocalTimezone         LocalTime           UTCTime
 Converts multiple Unix EPOCH dates from the pipeline to human readable date
 
 
-```powershell
+```text
 InputTime LocalTimezone         LocalTime              UTCTime
 --------- -------------         ---------              -------
 -9147600 Eastern Standard Time 9/16/1969 11:00:00 PM  9/17/1969 3:00:00 AM
