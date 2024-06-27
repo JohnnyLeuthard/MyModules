@@ -25,6 +25,7 @@ Convert-EPOCHDateTime [-InputTime] <Object> [-ProgressAction <ActionPreference>]
 ```powershell
 Convert-EPOCHDateTime -InputTime -9147600
 ```
+Converts Unix EPOCH date -9147600 to a human readable date
     
 ```powershell
 InputTime LocalTimezone         LocalTime           UTCTime
@@ -32,7 +33,6 @@ InputTime LocalTimezone         LocalTime           UTCTime
 999999094 Eastern Standard Time 9/8/2001 9:31:34 PM 9/9/2001 1:31:34 AM
 ```
 
-Converts Unix EPOCH time -9147600 to a human readable date
 
 ### EXAMPLE 2
 ```powershell
@@ -40,6 +40,8 @@ Converts Unix EPOCH time -9147600 to a human readable date
 -9147600,1539613448,1529604105 | Convert-EPOCHDateTime
 
 ```
+Converts multiple Unix EPOCH dates from the pipeline to human readable date
+
 
 ```powershell
 InputTime LocalTimezone         LocalTime              UTCTime
@@ -51,7 +53,7 @@ InputTime LocalTimezone         LocalTime              UTCTime
 ## PARAMETERS
 
 ### -InputTime
-The EPOCH time to converte
+The EPOCH time to convert
 
 ```yaml
 Type: Object
