@@ -22,17 +22,32 @@ Convert-EPOCHDateTime [-InputTime] <Object> [-ProgressAction <ActionPreference>]
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 Convert-EPOCHDateTime -InputTime -9147600
+```
+    
+```
+    InputTime LocalTimezone         LocalTime           UTCTime
+    --------- -------------         ---------           -------
+    999999094 Eastern Standard Time 9/8/2001 9:31:34 PM 9/9/2001 1:31:34 AM
 ```
 
 Converts Unix EPOCH time -9147600 to a human readable date
 
 ### EXAMPLE 2
-```
+```powershell
+
 -9147600,1539613448,1529604105 | Convert-EPOCHDateTime
+
 ```
 
+```powershell
+        InputTime LocalTimezone         LocalTime              UTCTime
+        --------- -------------         ---------              -------
+      -9147600 Eastern Standard Time 9/16/1969 11:00:00 PM  9/17/1969 3:00:00 AM
+      1539613448 Eastern Standard Time 10/15/2018 10:24:08 AM 10/15/2018 2:24:08 PM
+      1529604105 Eastern Standard Time 6/21/2018 2:01:45 PM   6/21/2018 6:01:45 PM
+```
 ## PARAMETERS
 
 ### -InputTime
