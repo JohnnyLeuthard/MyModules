@@ -12,8 +12,8 @@ schema: 2.0.0
 ## SYNTAX
 
 ```
-Convert-EPOCHDateTime [-InputTime] <Object> [-UpdatedParam <Object>] [-ProgressAction <ActionPreference>]
- [-WhatIf] [-Confirm] [<CommonParameters>]
+Convert-EPOCHDateTime [-InputTime] <Object> [-ProgressAction <ActionPreference>] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -45,21 +45,6 @@ Aliases:
 
 Required: True
 Position: 1
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
-### -UpdatedParam
-This is an updated partam
-
-```yaml
-Type: Object
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
 Default value: None
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False

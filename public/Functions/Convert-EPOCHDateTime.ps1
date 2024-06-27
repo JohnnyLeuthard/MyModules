@@ -7,10 +7,7 @@ Function Convert-EPOCHDateTime
   .description
 
   .Parameter InputTime
-    The EPOCH time to converte
-
-  .Parameter UpdatedParam
-    This is an updated partam
+    The EPOCH time to convert
     
   .Example
     Convert-EPOCHDateTime -InputTime -9147600
@@ -22,7 +19,7 @@ Function Convert-EPOCHDateTime
 
 
   .Link
-
+    https://github.com/JohnnyLeuthard/MyModules/blob/main/en-us/MD/Convert-EPOCHDateTime.md
   .Notes
     Author: Johnny Leuthard
 
@@ -32,9 +29,8 @@ Function Convert-EPOCHDateTime
   (
     [Parameter(Position = 0, ValueFromPipeline, Mandatory)]
     [ValidateNotNullOrEmpty()]
-      $InputTime,
-    [Parameter(ValueFromPipeline)]
-      $UpdatedParam
+      $InputTime
+      
   )
   Begin
   {
