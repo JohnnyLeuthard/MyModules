@@ -33,21 +33,22 @@ Gets the SPN of the current computer
 Get-SPN Server1
 Get-SPN -ComputerName Server1
 ```
-Gets the SPN's of a server names Server1
 
+Gets the SPN's of a server names Server1
 
 ### EXAMPLE 3
 ```powershell
 $ServerList | Get-SPN
 ```
+
 Gets the SPN's of a list of servers contained in the variable names $ServerList
 
 ### EXAMPLE 4
 ```powershell
 Get-Content "C:\Temp\Servers.txt" | Get-SPN
 ```
-Gets the SPN's of a list of servers contained in the text file C:\Temp\Servers.txt
 
+Gets the SPN's of a list of servers contained in the text file C:\Temp\Servers.txt
 
 ### EXAMPLE 5
 ```powershell
@@ -61,6 +62,7 @@ Then exports it to the CSV file C:\Temp\SPNData.csv
 ```powershell
 Get-Content "C:\Temp\Servers.txt" | Get-SPN | Export-Clixml  "C:\Temp\SPNData.xml"
 ```
+
 Gets the SPN's of a list of servers contained in the text file C:\Temp\Servers.txt 
 Then exports it to the XML file C:\Temp\SPNData.xml
 
