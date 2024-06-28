@@ -11,6 +11,13 @@ schema: 2.0.0
 
 ## SYNTAX
 
+### All (Default)
+```
+Convert-EPOCHDateTime [-InputTime] <Object> [-ProgressAction <ActionPreference>] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
+```
+
+### TEMP
 ```
 Convert-EPOCHDateTime [-InputTime] <Object> [-ProgressAction <ActionPreference>] [-WhatIf] [-Confirm]
  [<CommonParameters>]
@@ -25,23 +32,17 @@ Convert-EPOCHDateTime [-InputTime] <Object> [-ProgressAction <ActionPreference>]
 ```powershell
 Convert-EPOCHDateTime -InputTime -9147600
 ```
-Converts Unix EPOCH date -9147600 to a human readable date
-    
+
 ```
 InputTime LocalTimezone         LocalTime           UTCTime
 --------- -------------         ---------           -------
 999999094 Eastern Standard Time 9/8/2001 9:31:34 PM 9/9/2001 1:31:34 AM
 ```
 
-
 ### EXAMPLE 2
 ```powershell
-
 -9147600,1539613448,1529604105 | Convert-EPOCHDateTime
-
 ```
-Converts multiple Unix EPOCH dates from the pipeline to human readable date
-
 
 ```
 InputTime LocalTimezone         LocalTime              UTCTime
@@ -50,6 +51,7 @@ InputTime LocalTimezone         LocalTime              UTCTime
 1539613448 Eastern Standard Time 10/15/2018 10:24:08 AM 10/15/2018 2:24:08 PM
 1529604105 Eastern Standard Time 6/21/2018 2:01:45 PM   6/21/2018 6:01:45 PM
 ```
+
 ## PARAMETERS
 
 ### -InputTime
@@ -117,9 +119,9 @@ Accept wildcard characters: False
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
-[String] [[Object]]
+
 ## OUTPUTS
-[[PSObject]]
+
 ## NOTES
 Author: Johnny Leuthard
 
