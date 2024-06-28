@@ -11,11 +11,11 @@ Function Convert-EPOCHDateTime
     The EPOCH time to convert
     
   .Example
-    Convert-EPOCHDateTime -InputTime 999999094
+    Convert-EPOCHDateTime -InputTime 1729999999
 
-    InputTime LocalTimezone         LocalTime           UTCTime
-    --------- -------------         ---------           -------
-    999999094 Eastern Standard Time 9/8/2001 9:31:34 PM 9/9/2001 1:31:34 AM
+    InputTime LocalTimezone         LocalTime              UTCTime
+    --------- -------------         ---------              -------
+    1729999999 Eastern Standard Time 10/26/2024 11:33:19 PM 10/27/2024 3:33:19 AM
 
 
   .Example
