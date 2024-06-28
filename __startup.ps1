@@ -21,8 +21,8 @@
 
     
     $RequiredFiles | % {
-        Write-Host "File: $_" -ForegroundColor Green
-        <#
+        #Write-Host "File: $_" -ForegroundColor Green
+        #
         If ((Test-Path $_) -eq $false) 
         {
             Write-Host $_ -ForegroundColor green

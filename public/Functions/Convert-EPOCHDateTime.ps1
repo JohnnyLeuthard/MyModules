@@ -34,10 +34,11 @@ Function Convert-EPOCHDateTime
     Author: Johnny Leuthard
 
 #>
-  [CmdletBinding(SupportsShouldProcess,DefaultParameterSetName = 'None')]
-  Param
+[CmdletBinding(SupportsShouldProcess,DefaultParameterSetName = 'All')]
+Param
   (
-    [Parameter(Position = 0, ValueFromPipeline, Mandatory)]
+    [Parameter(Position = 0, ValueFromPipeline, Mandatory,ParameterSetName='All')]
+    [Parameter(ValueFromPipeline,ParameterSetName='TEMP')]
     [ValidateNotNullOrEmpty()]
       $InputTime
       
