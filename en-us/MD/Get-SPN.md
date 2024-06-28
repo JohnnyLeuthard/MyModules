@@ -12,10 +12,9 @@ Get SPN of a server or list of servers
 
 ## SYNTAX
 
-```powershell
+```
 Get-SPN [[-ComputerName] <Object>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
-
 
 ## DESCRIPTION
 Get Service Principal Names (SPN) of a server or list of servers.
@@ -23,62 +22,49 @@ Get Service Principal Names (SPN) of a server or list of servers.
 ## EXAMPLES
 
 ### EXAMPLE 1
-```powershell
+```
 get-spn
 ```
 
-Description
----------------------------
 Gets the SPN of the current computer
 
 ### EXAMPLE 2
 ```powershell
 Get-SPN Server1
-or
-      Get-SPN -ComputerName Server1
-      
-Description
----------------------------
+Get-SPN -ComputerName Server1
+
 Gets the SPN's of a server names Server1
 ```
 
 ### EXAMPLE 3
-```powershell
+```
 $ServerList | Get-SPN
 ```
-
-Description
----------------------------
 Gets the SPN's of a list of servers contained in the variable names $ServerList
 
+
 ### EXAMPLE 4
-```powershell
+```
 Get-Content "C:\Temp\Servers.txt" | Get-SPN
 ```
-
-Description
----------------------------
 Gets the SPN's of a list of servers contained in the text file C:\Temp\Servers.txt
 
+
 ### EXAMPLE 5
-```powershell
+```
 Get-Content "C:\Temp\Servers.txt" | Get-SPN | Export-Csv -NoTypeInformation "C:\Temp\SPNData.csv"
 ```
 
-Description
----------------------------
 Gets the SPN's of a list of servers contained in the text file C:\Temp\Servers.txt 
-      Then exports it to the CSV file C:\Temp\SPNData.csv
+Then exports it to the CSV file C:\Temp\SPNData.csv
 
 ### EXAMPLE 6
-```powershell
+```
 Get-Content "C:\Temp\Servers.txt" | Get-SPN | Export-Clixml  "C:\Temp\SPNData.xml"
 ```
 
-Description
----------------------------
 Gets the SPN's of a list of servers contained in the text file C:\Temp\Servers.txt 
-      Then exports it to the XML file C:\Temp\SPNData.xml
+Then exports it to the XML file C:\Temp\SPNData.xml
 
 ## PARAMETERS
 
@@ -120,6 +106,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
-Author Johnny Leuthard
+Author: Johnny Leuthard
 
 ## RELATED LINKS
