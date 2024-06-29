@@ -7,7 +7,6 @@ schema: 2.0.0
 
 # Convert-EPOCHDateTime
 
-
 ## SYNOPSIS
 Converts Unix EPOCH time to a human readable date
 Johnny Test
