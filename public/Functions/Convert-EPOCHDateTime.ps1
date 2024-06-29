@@ -2,13 +2,15 @@
 Function Convert-EPOCHDateTime
 {
 <#
-  .Synopsis
-    Converts Unix EPOCH time to a human readable date
-  .description
+  .SYNOPSIS
+    Converts Unix EPOCH time to a human readable date.
+  .DESCRIPTION
     Converts Unix EPOCH time to a human readable date displaying in format of severl different time zones
 
   .Parameter InputTime
     The EPOCH time to convert
+  .Parameter DummySwitch
+    Just a dummy switch to test if udates are working. It doesn't really do anythng but spit a message to the screen in rghw "end" section of the function.
     
   .Example
     Convert-EPOCHDateTime -InputTime 1729999999
@@ -30,6 +32,7 @@ Function Convert-EPOCHDateTime
 
   .Link
     https://github.com/JohnnyLeuthard/MyModules/blob/main/en-us/MD/Convert-EPOCHDateTime.md
+  
   .Notes
     Author: Johnny Leuthard
 
@@ -38,10 +41,13 @@ Function Convert-EPOCHDateTime
 Param
   (
     [Parameter(Position = 0, ValueFromPipeline, Mandatory,ParameterSetName='All')]
-    [Parameter(ValueFromPipeline,ParameterSetName='TEMP')]
+    [Parameter(ValueFromPipeline,ParameterSetName='Dummy')]
     [ValidateNotNullOrEmpty()]
-      $InputTime
-      
+    [Alias("Time")]
+      [string]$InputTime,
+    [Parameter(Position = 0, ValueFromPipeline, Mandatory,ParameterSetName='Dummy')]
+    [Alias("Dummy")]
+		  [switch]$DummySwitch 
   )
   Begin
   {
@@ -67,12 +73,12 @@ Param
   }
   end
   {
+      If($DummySwitch -eq $true){Write-Output "Dummy Switch supplied"}
   }
 }#(Function Convert-EPOCHDateTime)
 ##################
 <#
 
-Convert-EPOCHDateTime -InputTime '1636112341'
 
 #>
 
