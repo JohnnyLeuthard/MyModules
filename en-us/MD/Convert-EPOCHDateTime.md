@@ -30,7 +30,7 @@ Converts Unix EPOCH time to a human readable date displaying in format of severl
 ## EXAMPLES
 
 ### EXAMPLE 1
-```
+```powershell
 Convert-EPOCHDateTime -InputTime 1729999999
 ```
 
@@ -41,7 +41,7 @@ InputTime LocalTimezone         LocalTime              UTCTime
 ```
 
 ### EXAMPLE 2
-```
+```powershell
 -9147600,1539613448,1529604105 | Convert-EPOCHDateTime
 ```
 
