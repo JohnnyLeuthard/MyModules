@@ -34,20 +34,24 @@ Converts Unix EPOCH time to a human readable date displaying in format of severl
 Convert-EPOCHDateTime -InputTime 1729999999
 ```
 
+```
 InputTime LocalTimezone         LocalTime              UTCTime
 --------- -------------         ---------              -------
 1729999999 Eastern Standard Time 10/26/2024 11:33:19 PM 10/27/2024 3:33:19 AM
+```
 
 ### EXAMPLE 2
 ```
 -9147600,1539613448,1529604105 | Convert-EPOCHDateTime
 ```
 
+```
 InputTime LocalTimezone         LocalTime              UTCTime
 --------- -------------         ---------              -------
   -9147600 Eastern Standard Time 9/16/1969 11:00:00 PM  9/17/1969 3:00:00 AM
   1539613448 Eastern Standard Time 10/15/2018 10:24:08 AM 10/15/2018 2:24:08 PM
   1529604105 Eastern Standard Time 6/21/2018 2:01:45 PM   6/21/2018 6:01:45 PM
+```
 
 ## PARAMETERS
 
