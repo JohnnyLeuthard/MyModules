@@ -9,7 +9,6 @@ schema: 2.0.0
 
 ## SYNOPSIS
 Converts Unix EPOCH time to a human readable date
-Johnny Test
 
 ## SYNTAX
 
