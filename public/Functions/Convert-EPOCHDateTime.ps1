@@ -45,18 +45,20 @@ Param
     [ValidateNotNullOrEmpty()]
     [Alias("Time")]
       [string]$InputTime,
+    
     [Parameter(Position = 0, ValueFromPipeline, Mandatory,ParameterSetName='Dummy')]
     [Alias("Dummy")]
 		  [switch]$DummySwitch 
   )
   Begin
   {
+    Write-Verbose "Processing EPOCH Times..."
   }
   Process
   {
 
+    Write-Verbose "...Processing time [$InputTime]"
     $FriendlyDate = (get-date '1/1/1970').addseconds($inputTime)
-
     # Get Local timezone
     ##$strCurrentTimeZone = (gwm-wmiobject win32_timezone).StandardName
     ##$TZ = [System.TimeZoneInfo]::FindSystemTimeZoneById(($strCurrentTimeZone)
@@ -73,7 +75,10 @@ Param
   }
   end
   {
-      If($DummySwitch -eq $true){Write-Output "Dummy Switch supplied"}
+      If($DummySwitch -eq $true){
+        Write-Verbose "*** Dummy switch sullplied! ***"
+        Write-Output "Dummy Switch supplied"
+      }
   }
 }#(Function Convert-EPOCHDateTime)
 ##################
