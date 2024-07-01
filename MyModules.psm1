@@ -58,6 +58,12 @@ if ($functionsAdded -or $functionsRemoved -or $aliasesAdded -or $aliasesRemoved)
         $_ | Write-Error
     }
 }
+
+# Load classes
+#". $PSScriptRoot/Clases/ClassCar.ps1"
+
+
+
 #########################
 ### NOTES
 #########################
