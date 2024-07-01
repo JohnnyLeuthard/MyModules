@@ -1,6 +1,6 @@
 ﻿#REQUIRES -RunAsAdministrator
 
-Function SET-POSHTemplate
+Function Test-POSHTemplate
 {
 <#
 .SYNOPSIS
