@@ -8,11 +8,32 @@ class car
     [string]$model
     [string]$color
 
+    #<#
+    car (){
+        
+    }
+
+    car ($MyModel){
+        $this.model = $MyModel
+    }
+    
+    #<#
     paint ([string]$paint)
     {
         $this.color = $paint
         Write-Host "New car color is $paint" -ForegroundColor $paint
     }
+    #>
     
 }
+####################
+### NOTES
+####################
+<#
+
+[car]::new()
+[car]::new("MySafe")
+$b = [car]::new("MySafe")
+
+#>
 

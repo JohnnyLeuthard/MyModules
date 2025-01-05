@@ -13,7 +13,13 @@ $publicFunctionsPath    = $PSScriptRoot + $directorySeparator + 'Public' + $dire
 $privateFunctionsPath   = $PSScriptRoot + $directorySeparator + 'Private' + $directorySeparator + 'Functions'
 $currentManifest        = Test-ModuleManifest $moduleManifest
 
-# Get list of PS1 files in the functions folders (files atrating with __ get ignored)
+# Import Settings file  ##?? (set this to script scope not global? )
+$dataPath = Join-Path -Path $PSScriptRoot -ChildPath Settings.psd1
+#$global:SettingsHashtable = Import-PowerShellDataFile -Path $dataPath ##??
+$script:SettingsHashtable = Import-PowerShellDataFile -Path $dataPath ##??
+
+
+# Get list of PS1 files in the functions folders (files atrating with __ will be ignored)
 $aliases = @()  ##??
 $publicFunctions  = Get-ChildItem -Path $publicFunctionsPath -Recurse  | Where-Object { ($_.Name -notlike "__*") -and ($_.Extension -eq '.ps1')}
 $privateFunctions = Get-ChildItem -Path $privateFunctionsPath -Recurse | Where-Object { ($_.Name -notlike "__*") -and ($_.Extension -eq '.ps1')}
@@ -22,6 +28,7 @@ $privateFunctions = Get-ChildItem -Path $privateFunctionsPath -Recurse | Where-O
 #-- DOT source scripts
 $PublicFunctions | ForEach-Object { . $_.FullName }
 $privateFunctions | ForEach-Object { . $_.FullName }
+
 
 # Export all of the public functions from this module
 $publicFunctions | ForEach-Object { 
